@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ProductVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Attendance Criteria</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Add Criteria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+          @Html.DisplayFor(modelItem => item.ProductName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+           
+            <td>
+                <button data-id="@item.Id" class="btn btn-primary allocateBtn" type="button">Allocate Criteria</button>
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id" >Edit</a> |
+                <a asp-action="Details" class="btn btn-warning" asp-route-id="@item.Id">Details</a> |
+                @*<a asp-action="Delete" class="btn btn-danger deleteBtn" asp-route-id="@item.Id">Delete</a>*@
+                <button data-id="@item.Id" class="btn btn-danger deleteBtn" type="button">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<form id="deleteForm" asp-action="Delete">
+        <input type="hidden" id="productId" name="Id" />
+</form>
+<form id="allocationForm" asp-action="AllocateOrder">
+        <input type="hidden" id="productIdAllocate" name="Id" />
+</form>
+@section Scripts{
+    <script>
+        $(function(){
+
+            $('.deleteBtn').click(function(e) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this record?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm)=>{
+                    if (confirm) {
+                        var btn = $(this);
+                        var id = btn.data("id");
+                        $('#productId').val(id);
+                        $('#deleteForm').submit();
+                    }
+                     });
+            });
+
+             $('.allocateBtn').click(function(e) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to allocate this product to Employee?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                }).then((confirm)=>{
+                    if (confirm) {
+                        var btn = $(this);
+                        var id = btn.data("id");
+                        $('#productIdAllocate').val(id);
+                        $('#allocationForm').submit();
+                    }
+                     });
+            });
+        });
+    </script>
+}

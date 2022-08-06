@@ -1,0 +1,114 @@
+﻿@model EmployeeItemRequestViewVM
+
+@{
+    ViewData["Title"] = "My Request";
+}
+<div class="card">
+     <div class="card-header">
+    <h2>My Attendance Record</h2>
+  </div>
+  
+       
+        @foreach (var allocation in Model.OrderAllocations)
+        {
+            <li class="list-group-item">
+                <div class="row">
+                <div class="col"><h6>@allocation.Product.ProductName</h6></div>
+                <div class="col"> 
+                    <button type="button" class="btn btn-primary">
+                     <span class="badge text-bg-secondary">@allocation.Product.ProductQuantity</span>
+                    </button> 
+                </div>
+               </div>
+               <br>
+           @*
+           <a class="w-100 btn btn-warning btn-block" asp-action="EditAllocation" asp-route-id="@allocation.Id">Edit Allocation</a>
+
+           *@  
+
+            </li>
+
+        }
+       
+    </ul>
+</div>
+
+<hr />
+<h2>Current Attendance Record</h2>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.ItemRequests[0].DateRequested)
+            </th>
+            
+            </th>
+            <th>
+               Attendance Status
+            </th>
+          
+            <th>
+                 @Html.DisplayNameFor(model => model.ItemRequests[0].RequstComments)
+            </th>
+             <th>
+                 Attendance Confirmation
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ItemRequests) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequested)
+            </td>
+          
+            <td>
+                 @if (item.DateRequested > item.EarlyTime)
+                    {
+                        <span class="badge bg-false" style="color:red">Late</span>
+                    }
+                    else if(item.DateRequested < item.EarlyTime)
+                    {
+                        <span class="badge bg-success">Early</span>
+
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequstComments)
+            </td>
+            <td>
+
+                    @if (item.Cancelled)
+                    {
+                        <span class="badge bg-secondary">Cancelled</span>
+                    }
+                    else if(item.Approved == null)
+                    {
+                        <span class="badge bg-warning">Pending</span>
+
+                    }else if (item.Approved.Value)
+                    {
+                        <span class="badge bg-success">Early</span>
+
+                    }else if (item.Approved.Value == false)
+                    {
+                        <span class="badge bg-danger">Late</span>
+                        
+                    }
+            </td>
+              @*
+            <td>
+                    @if(item.Approved == null)
+                    {
+                        <form>
+                            <input asp-form="@item.Id" type="hidden"/>
+                            <button type="submit" class="btn btn-danger btn-sm "> Cancel Request </button>
+                        </form>
+                    }            
+            </td>
+            *@
+        </tr>
+}
+    </tbody>
+</table>

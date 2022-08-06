@@ -1,0 +1,53 @@
+﻿@model EmployeeAllocationVM
+@{
+    ViewData["Title"] = "ViewAllocations";
+}
+
+
+<h1>Employee Data For @Model.Firstname @Model.Lastname</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeDepartment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeDepartment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateJoined)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateJoined)
+        </dd>
+    </dl>
+</div>
+
+
+            <a class="btn btn-dark" asp-action="Index">Back</a>
+            <a class="btn btn-outline-danger" asp-action="Index">Edit</a>
+            <a class="btn btn-danger" asp-action="Index">Delete</a>
+    
+
+
+
+

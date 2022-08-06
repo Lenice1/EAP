@@ -1,0 +1,64 @@
+﻿@model ItemRequestCreateVM   
+
+@{
+    ViewData["Title"] = "Request Items";
+}
+
+
+<h1>Log Attendance</h1>
+
+        <h4 class="text-center">LOG ATTENDANCE HERE</h4>
+        <hr />
+        <p>Please note that Employees Logged in after 8:30 a.m. will be considered late.</p>
+        <hr />
+
+        <br />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-6">
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class ="form-select" asp-items="Model?.Products">
+                    <option>Attendance Status</option>
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group mb-6">
+                <label asp-for="RequstComments" class="control-label"></label>
+                <textarea  asp-for="RequstComments" class="form-control"></textarea>
+                <span asp-validation-for="RequstComments" class="text-danger"></span>
+            </div>
+          
+            <br />
+             <div class="form-group mb-6">
+                <label asp-for="Quantity_Requested" class="control-label"></label>
+                <textarea  asp-for="Quantity_Requested" class="form-control"></textarea>
+                <span asp-validation-for="Quantity_Requested" class="text-danger"></span>
+            </div>
+          
+
+            <br />
+             <div class="form-group mb-6">
+            </div>
+            <br />
+            <div> 
+                <h6>Current Date/Time: @DateTime.Now</h6>
+                <br />
+               <h6>Employee Logged In: @User.Identity?.Name</h6> 
+            </div>
+             <div> 
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Check In" class="btn btn-primary" />
+                <a class="btn btn-dark" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+  <hr />
+
+  
