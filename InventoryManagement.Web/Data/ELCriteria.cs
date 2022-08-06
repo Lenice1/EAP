@@ -2,7 +2,7 @@
 
 namespace EmployeeAttendancePortal.Web.Data
 {
-    public class Product:BaseEntity
+    public class ELCriteria:BaseEntity
     {
        
         public string ProductName { get; set; }

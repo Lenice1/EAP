@@ -25,7 +25,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IEmailSender>(s => new EmailSender("localhost", 25, "no-reply@EmployeeAttendancePortal.com"));
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IELCriteriaRepository, ELCriteriaRepository>();
 builder.Services.AddScoped<IOrderAllocationRepository, OrderAllocationRepository>();
 builder.Services.AddScoped<IItemRequestRepository, ItemRequestRepository>();
 

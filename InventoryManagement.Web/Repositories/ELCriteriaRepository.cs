@@ -3,9 +3,9 @@ using EmployeeAttendancePortal.Web.Data;
 
 namespace EmployeeAttendancePortal.Web.Repositories
 {
-    public class ProductRepository : GenericRepository<Product>, IProductRepository
+    public class ELCriteriaRepository : GenericRepository<ELCriteria>, IELCriteriaRepository
     {
-        public ProductRepository(ApplicationDbContext context) : base(context)
+        public ELCriteriaRepository(ApplicationDbContext context) : base(context)
         {
 
         }

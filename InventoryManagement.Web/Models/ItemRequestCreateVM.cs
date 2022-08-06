@@ -7,7 +7,7 @@ namespace EmployeeAttendancePortal.Web.Models
 {
     public class ItemRequestCreateVM 
     {
-        public ProductVM? Product { get; set; }
+        public ELCriteriaVM? Product { get; set; }
 
         [Required]
         [Display(Name = "Late/Early Attendance")]

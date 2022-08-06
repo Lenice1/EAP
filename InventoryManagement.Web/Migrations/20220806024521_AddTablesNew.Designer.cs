@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeAttendancePortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220805203612_AddAllTables")]
-    partial class AddAllTables
+    [Migration("20220806024521_AddTablesNew")]
+    partial class AddTablesNew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,39 @@ namespace EmployeeAttendancePortal.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("EmployeeAttendancePortal.Web.Data.ELCriteria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReOrderLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
 
             modelBuilder.Entity("EmployeeAttendancePortal.Web.Data.Employee", b =>
                 {
@@ -108,7 +141,7 @@ namespace EmployeeAttendancePortal.Migrations
                         {
                             Id = "641441d9-073b-45d3-81d5-7edbcb0faff7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7655d3b6-6686-4562-adba-a419444bf6c3",
+                            ConcurrencyStamp = "cbb16a97-4c59-4563-bcb8-928a1935e767",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@localhost.com",
@@ -118,9 +151,9 @@ namespace EmployeeAttendancePortal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPQrvohMeLyqWzNmQfk7LxsRrixSDdG9pzwKlD1gIlVi9GwDgkhmL15fuOCVnJbNUA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN90wFtdjW4/W8jMV2NyJIG6fYyfMwf5iDkaM5jnxrlC3x6w0WKa7TRY6WApitHe9A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "af36d78f-043a-4fb2-a7ab-44699cb561e4",
+                            SecurityStamp = "665431a6-b112-4520-9827-fbea43bf938d",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -128,7 +161,7 @@ namespace EmployeeAttendancePortal.Migrations
                         {
                             Id = "2b06a079-d2c3-4b00-bb14-148b795cc2f9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aef54412-8350-4f7b-b587-7aacd1e6b3d4",
+                            ConcurrencyStamp = "d29f5484-06a8-42d2-8089-720875d7cd7e",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@localhost.com",
@@ -138,9 +171,9 @@ namespace EmployeeAttendancePortal.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKwVCvhxZrku81T1b1hH9NU7R/8nA8TXJ7fJwWwI/ZN/SUwclRZRzilByck31vND4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFC1OEBL2Ok4x3P3WGljn3JRHknwDbbtkftSU/8XT9Rhdke0VEiVkWBWEt39RdmzRA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "28b16bd3-1e1e-4ae2-89c0-710cc6a98560",
+                            SecurityStamp = "a54c0bf0-7151-46c5-a872-419957f9ceaa",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -247,39 +280,6 @@ namespace EmployeeAttendancePortal.Migrations
                     b.ToTable("OrderAllocations");
                 });
 
-            modelBuilder.Entity("EmployeeAttendancePortal.Web.Data.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReOrderLevel")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -310,14 +310,14 @@ namespace EmployeeAttendancePortal.Migrations
                         new
                         {
                             Id = "605ae320-30b8-4996-8c99-bf4d3274cf32",
-                            ConcurrencyStamp = "9b6ad9b5-a2f3-4f6a-8fde-2c06b80a8109",
+                            ConcurrencyStamp = "82e57186-94a0-4188-bc3f-4053a1a0a259",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "502aA320-30b8-4996-8A99-bf4d3274af34",
-                            ConcurrencyStamp = "be9b2276-ae1c-4fa9-9a25-14651cf731d0",
+                            ConcurrencyStamp = "f287f67c-7000-427c-ad87-dae7b0b1a280",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -447,7 +447,7 @@ namespace EmployeeAttendancePortal.Migrations
 
             modelBuilder.Entity("EmployeeAttendancePortal.Web.Data.ItemRequest", b =>
                 {
-                    b.HasOne("EmployeeAttendancePortal.Web.Data.Product", "Product")
+                    b.HasOne("EmployeeAttendancePortal.Web.Data.ELCriteria", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,7 +464,7 @@ namespace EmployeeAttendancePortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EmployeeAttendancePortal.Web.Data.Product", "Product")
+                    b.HasOne("EmployeeAttendancePortal.Web.Data.ELCriteria", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

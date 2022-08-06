@@ -8,7 +8,7 @@ namespace EmployeeAttendancePortal.Web.Configurations
     {
         public MapperConfig()
         {
-            CreateMap<Product, ProductVM>().ReverseMap();
+            CreateMap<ELCriteria, ELCriteriaVM>().ReverseMap();
             CreateMap<Employee, EmployeeListVM>().ReverseMap();
             CreateMap<Employee, EmployeeAllocationVM>().ReverseMap();
             CreateMap<OrderAllocation, OrderAllocationVM>().ReverseMap();

@@ -2,7 +2,7 @@
 
 namespace EmployeeAttendancePortal.Web.Contracts
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface IELCriteriaRepository : IGenericRepository<ELCriteria>
     {
 
     }

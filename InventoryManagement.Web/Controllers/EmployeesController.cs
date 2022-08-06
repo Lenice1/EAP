@@ -14,11 +14,11 @@ namespace EmployeeAttendancePortal.Web.Controllers
         private readonly UserManager<Employee> userManager;
         private readonly IMapper mapper;
         private readonly IOrderAllocationRepository orderAllocationRepository;
-        private readonly IProductRepository productRepository;
+        private readonly IELCriteriaRepository productRepository;
 
         public EmployeesController(UserManager<Employee> userManager,
             IMapper mapper, IOrderAllocationRepository orderAllocationRepository, 
-            IProductRepository productRepository)
+            IELCriteriaRepository productRepository)
         {
             this.userManager = userManager;
             this.mapper = mapper;
@@ -75,7 +75,7 @@ namespace EmployeeAttendancePortal.Web.Controllers
                 ModelState.AddModelError(string.Empty, " An Error Has Occured. Please Try Again Later.");
             }
              model.Employee = mapper.Map<EmployeeListVM>(await userManager.FindByIdAsync(model.EmployeeId));
-            model.Product = mapper.Map<ProductVM>(await productRepository.GetAsync(model.ProductId));
+            model.Product = mapper.Map<ELCriteriaVM>(await productRepository.GetAsync(model.ProductId));
 
             return View(model);
 

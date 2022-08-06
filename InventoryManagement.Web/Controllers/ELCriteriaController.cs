@@ -15,19 +15,19 @@ using EmployeeAttendancePortal.Web.Constants;
 namespace EmployeeAttendancePortal.Web.Controllers
 {
     [Authorize(Roles = Roles.Administrator)]
-    public class ProductsController : Controller
+    public class ELCriteriaController : Controller
     {
        // private readonly ApplicationDbContext _context; IF ERRORS OCCURED REMOVE COMMENT
 
-        private readonly IProductRepository productRepository;
+        private readonly IELCriteriaRepository eLCriteriaRepository;
         private readonly IMapper mapper;
         private readonly IOrderAllocationRepository orderAllocationRepository;
 
-        public ProductsController(IProductRepository productRepository
+        public ELCriteriaController(IELCriteriaRepository eLCriteriaRepository
             , IMapper mapper
             , IOrderAllocationRepository orderAllocationRepository)
         {
-            this.productRepository = productRepository;
+            this.eLCriteriaRepository = eLCriteriaRepository;
             this.mapper = mapper;
             this.orderAllocationRepository = orderAllocationRepository;
         }
@@ -35,8 +35,8 @@ namespace EmployeeAttendancePortal.Web.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var products = mapper.Map<List<ProductVM>>(await productRepository.GetAllAsync());
-            return View(products);
+            var eLCriterias = mapper.Map<List<ELCriteriaVM>>(await eLCriteriaRepository.GetAllAsync());
+            return View(eLCriterias);
 
         }
 
@@ -44,15 +44,15 @@ namespace EmployeeAttendancePortal.Web.Controllers
         public async Task<IActionResult> Details(int? id)
         {
 
-            var product = await productRepository.GetAsync(id);
-            if (product == null)
+            var eLCriteria = await eLCriteriaRepository.GetAsync(id);
+            if (eLCriteria == null)
             {
                 return NotFound();
             }
 
-            var productVM = mapper.Map<ProductVM>(product);
+            var eLCriteriaVM = mapper.Map<ELCriteriaVM>(eLCriteria);
 
-            return View(productVM);
+            return View(eLCriteriaVM);
         }
 
         // GET: Products/Create
@@ -66,29 +66,29 @@ namespace EmployeeAttendancePortal.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ProductVM productVM)
+        public async Task<IActionResult> Create(ELCriteriaVM eLCriteriaVM)
         {
             if (ModelState.IsValid)
             {
-                var product = mapper.Map<Product>(productVM);
-               await productRepository.AddAsync(product);
+                var eLCriteria = mapper.Map<ELCriteria>(eLCriteriaVM);
+               await eLCriteriaRepository.AddAsync(eLCriteria);
                 return RedirectToAction(nameof(Index));
             }
-            return View(productVM);
+            return View(eLCriteriaVM);
         }
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            var product = await productRepository.GetAsync(id);
-            if (product == null)
+            var eLCriteria = await eLCriteriaRepository.GetAsync(id);
+            if (eLCriteria == null)
             {
                 return NotFound();
             }
 
-            var productVM = mapper.Map<ProductVM>(product);
+            var eLCriteriaVM = mapper.Map<ELCriteriaVM>(eLCriteria);
            
-            return View(productVM);
+            return View(eLCriteriaVM);
         }
 
         // POST: Products/Edit/5
@@ -96,9 +96,9 @@ namespace EmployeeAttendancePortal.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ProductVM productVM)
+        public async Task<IActionResult> Edit(int id, ELCriteriaVM eLCriteriaVM)
         {
-            if (id != productVM.Id)
+            if (id != eLCriteriaVM.Id)
             {
                 return NotFound();
             }
@@ -107,12 +107,12 @@ namespace EmployeeAttendancePortal.Web.Controllers
             {
                 try
                 {
-                    var product = mapper.Map<Product>(productVM);
-                   await productRepository.UpdateAsync(product);
+                    var product = mapper.Map<ELCriteria>(eLCriteriaVM);
+                   await eLCriteriaRepository.UpdateAsync(product);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await productRepository.Exists(productVM.Id))
+                    if (!await eLCriteriaRepository.Exists(eLCriteriaVM.Id))
                     {
                         return NotFound();
                     }
@@ -123,7 +123,7 @@ namespace EmployeeAttendancePortal.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(productVM);
+            return View(eLCriteriaVM);
         }
 
         // GET: Products/Delete/5
@@ -149,7 +149,7 @@ namespace EmployeeAttendancePortal.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await productRepository.DeleteAsync(id);
+            await eLCriteriaRepository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]

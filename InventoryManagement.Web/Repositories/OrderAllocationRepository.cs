@@ -12,11 +12,11 @@ namespace EmployeeAttendancePortal.Web.Repositories
     {
         private readonly ApplicationDbContext context;
         private readonly UserManager<Employee> userManager;
-        private readonly IProductRepository productRepository;
+        private readonly IELCriteriaRepository productRepository;
         private readonly IMapper mapper;
 
         public OrderAllocationRepository(ApplicationDbContext context, 
-            UserManager<Employee> userManager, IProductRepository productRepository,
+            UserManager<Employee> userManager, IELCriteriaRepository productRepository,
             IMapper mapper) : base(context)
         {
             this.context = context;

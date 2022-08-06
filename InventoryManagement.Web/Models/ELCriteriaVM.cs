@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace EmployeeAttendancePortal.Web.Models
 {
-    public class ProductVM : BaseEntity
+    public class ELCriteriaVM : BaseEntity
     {
         [Display(Name = "Attendance")]
         [Required]

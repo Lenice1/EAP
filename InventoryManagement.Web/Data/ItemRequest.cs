@@ -6,7 +6,7 @@ namespace EmployeeAttendancePortal.Web.Data
     {
 
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public ELCriteria Product { get; set; }
         public int ProductId { get; set; }
         public int ProductQuantity { get; set; }
         public int Quantity_Requested { get; set; }

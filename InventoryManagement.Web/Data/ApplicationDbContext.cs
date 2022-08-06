@@ -20,7 +20,7 @@ namespace EmployeeAttendancePortal.Web.Data
 
         }
 
-        public DbSet<Product> Products{ get; set; }
+        public DbSet<ELCriteria> Products{ get; set; }
         public DbSet<ItemRequest> ItemRequests{ get; set; }
         public DbSet<OrderAllocation> OrderAllocations{ get; set; }
 

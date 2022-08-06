@@ -14,7 +14,7 @@ namespace EmployeeAttendancePortal.Web.Models
         public int Quantity_Requested { get; set; }
         [Display(Name = "Date Requested")]
         public DateTime DateRequested { get; set; }
-        public ProductVM? Product { get; set; }
+        public ELCriteriaVM? Product { get; set; }
 
 
 
